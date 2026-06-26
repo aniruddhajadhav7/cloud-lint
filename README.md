@@ -4,13 +4,13 @@
 
 Cloud-Lint is an offline CLI developer tool designed to validate, explain, and visualize your `cloud-init` configurations before they are deployed to a virtual machine. It completely eliminates the tedious deploy-wait-debug cycle by parsing your YAML and simulating the execution blueprint locally in milliseconds.
 
-## ✨ Features
+##  Features
 
-- **✅ Offline Validation:** Validates both YAML syntax and standard `cloud-init` JSON schemas instantly.
-- **🛡️ Security Risk Analysis:** Detects dangerous patterns like `curl | bash`, world-writable permissions (`chmod 777`), destructive commands (`rm -rf /`), and hardcoded credentials.
-- **🗺️ Execution Blueprinting:** Maps out exactly which modules run in which order across the five cloud-init stages (Generator, Local, Network, Config, Final).
-- **📊 Interactive HTML Reports:** Generates self-contained, beautiful HTML reports containing a visual timeline, module breakdowns, and a Mermaid.js dependency graph.
-- **🤖 CI/CD Ready:** Provides strict exit codes and structured JSON output for seamless integration into your deployment pipelines.
+- ** Offline Validation:** Validates both YAML syntax and standard `cloud-init` JSON schemas instantly.
+- ** Security Risk Analysis:** Detects dangerous patterns like `curl | bash`, world-writable permissions (`chmod 777`), destructive commands (`rm -rf /`), and hardcoded credentials.
+- ** Execution Blueprinting:** Maps out exactly which modules run in which order across the five cloud-init stages (Generator, Local, Network, Config, Final).
+- ** Interactive HTML Reports:** Generates self-contained, beautiful HTML reports containing a visual timeline, module breakdowns, and a Mermaid.js dependency graph.
+- ** CI/CD Ready:** Provides strict exit codes and structured JSON output for seamless integration into your deployment pipelines.
 
 ##  Installation
 
