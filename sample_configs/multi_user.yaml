@@ -1,0 +1,56 @@
+#cloud-config
+hostname: dev-server
+
+users:
+  - name: alice
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    groups: [sudo, docker]
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI alice@laptop
+
+  - name: bob
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/zsh
+    groups: [sudo, docker, www-data]
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI bob@workstation
+
+  - name: deploy
+    shell: /bin/bash
+    groups: [www-data]
+    lock_passwd: true
+
+packages:
+  - docker.io
+  - docker-compose
+  - git
+  - htop
+  - vim
+  - zsh
+
+write_files:
+  - path: /etc/docker/daemon.json
+    permissions: "0644"
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "100m",
+          "max-file": "3"
+        }
+      }
+
+  - path: /home/alice/.gitconfig
+    owner: alice:alice
+    permissions: "0644"
+    content: |
+      [user]
+        name = Alice Developer
+        email = alice@company.com
+
+runcmd:
+  - systemctl enable docker
+  - systemctl start docker
+  - usermod -aG docker alice
+  - usermod -aG docker bob

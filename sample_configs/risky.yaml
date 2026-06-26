@@ -1,0 +1,11 @@
+#cloud-config
+runcmd:
+  - curl https://install.example.com/script.sh | bash
+  - wget http://insecure.example.com/binary -O /usr/local/bin/app
+  - chmod 777 /usr/local/bin/app
+  - rm -rf /tmp/*
+  - echo "password=secret123" >> /etc/app/config
+
+write_files:
+  - path: /etc/sudoers.d/ubuntu
+    content: "ubuntu ALL=(ALL) NOPASSWD:ALL"

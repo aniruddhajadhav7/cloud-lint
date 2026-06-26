@@ -1,0 +1,52 @@
+#cloud-config
+hostname: web-server-01
+timezone: America/New_York
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - nginx
+  - certbot
+  - python3-certbot-nginx
+  - ufw
+
+users:
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... user@example.com
+
+write_files:
+  - path: /etc/nginx/nginx.conf
+    permissions: "0644"
+    owner: root:root
+    content: |
+      server {
+          listen 80;
+          server_name example.com;
+          return 301 https://$host$request_uri;
+      }
+
+  - path: /etc/ufw/applications.d/nginx
+    permissions: "0644"
+    content: |
+      [Nginx Full]
+      title=Nginx Full
+      ports=80,443/tcp
+
+runcmd:
+  - ufw allow 'Nginx Full'
+  - ufw --force enable
+  - systemctl enable nginx
+  - systemctl restart nginx
+  - certbot --nginx -d example.com --non-interactive --agree-tos -m admin@example.com
+
+final_message: |
+  Web server setup complete.
+  Nginx is running with SSL.
+
+power_state:
+  mode: reboot
+  message: "Rebooting to apply all changes"
+  timeout: 30

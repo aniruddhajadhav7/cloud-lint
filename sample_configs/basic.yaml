@@ -1,0 +1,13 @@
+#cloud-config
+hostname: my-server
+timezone: UTC
+locale: en_US.UTF-8
+
+packages:
+  - nginx
+  - git
+  - curl
+
+runcmd:
+  - systemctl enable nginx
+  - systemctl start nginx

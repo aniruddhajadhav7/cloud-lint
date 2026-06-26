@@ -1,0 +1,15 @@
+#cloud-config
+packages:
+  - nginx
+  - 
+
+write_files:
+  - path: /tmp/test
+    # Missing content field - should trigger schema warning
+
+users:
+  - # Missing name field - should trigger schema error
+
+runcmd:
+  - systemctl restart nginx
+  invalidkey: this should not be here
