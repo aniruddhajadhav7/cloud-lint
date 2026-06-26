@@ -1,4 +1,4 @@
-# ☁️ Cloud-Lint
+#  Cloud-Lint
 
 > **"Understand exactly what your cloud-init will do — before launching a single VM."**
 
@@ -12,7 +12,7 @@ Cloud-Lint is an offline CLI developer tool designed to validate, explain, and v
 - **📊 Interactive HTML Reports:** Generates self-contained, beautiful HTML reports containing a visual timeline, module breakdowns, and a Mermaid.js dependency graph.
 - **🤖 CI/CD Ready:** Provides strict exit codes and structured JSON output for seamless integration into your deployment pipelines.
 
-## 🚀 Installation
+##  Installation
 
 Cloud-Lint is built using Python 3.12+ and packaged with `hatchling`. You can easily install it locally or in a virtual environment.
 
@@ -30,7 +30,7 @@ source venv/bin/activate
 pip install -e .
 ```
 
-## 💻 Usage
+##  Usage
 
 Analyze a `cloud-init` file right in your terminal with rich visualization:
 ```bash
@@ -62,7 +62,7 @@ Generate a Mermaid.js DSL string of the dependency graph:
 cloud-lint graph user-data.yaml
 ```
 
-## 🏗️ Architecture
+##  Architecture
 
 Cloud-Lint is powered by:
 - **Typer & Rich:** For a beautiful, intuitive CLI interface.
